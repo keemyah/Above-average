@@ -130,16 +130,36 @@ textarea::placeholder{color:var(--text3)}
 .mnav button{background:none;border:0.5px solid var(--border);border-radius:var(--r);padding:6px 18px;cursor:pointer;font-size:18px;color:var(--text2);font-family:inherit}
 .mtitle{font-size:16px;font-weight:600}
 /* MONEY */
-.mbox{background:var(--bg2);border-radius:var(--r);padding:14px;flex:1}
-.mlbl{font-size:11px;color:var(--text2);margin-bottom:6px}
-.minp{font-size:22px;font-weight:600;border:none;background:none;width:100%;font-family:inherit;color:var(--text);outline:none}
-.minp::placeholder{color:var(--border2)}
+.mtabs{display:flex;gap:6px;margin-bottom:14px}
+.mtab{padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;border:0.5px solid var(--border2);color:var(--text2);background:none;font-family:inherit}
+.mtab.on{background:var(--purple-light);border-color:var(--purple-mid);color:var(--purple-dark);font-weight:500}
+.inc-form{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.inc-form input{font-size:13px;padding:9px 12px;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg);color:var(--text);font-family:inherit;outline:none}
+.inc-form input::placeholder{color:var(--text3)}
+.inc-form-row{display:flex;gap:8px}
+.inc-form-row input{flex:1}
+.inc-add-btn{padding:9px;border-radius:var(--r);border:0.5px solid var(--border2);background:none;cursor:pointer;font-size:13px;color:var(--text);font-family:inherit;width:100%}
+.inc-add-btn:active{background:var(--bg2)}
+.bursary-toggle{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);cursor:pointer}
+.inc-entry{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--border);font-size:13px}
+.inc-entry:last-child{border-bottom:none}
+.inc-entry-left{display:flex;flex-direction:column;gap:2px}
+.inc-entry-desc{font-size:14px}
+.inc-entry-meta{font-size:11px;color:var(--text3)}
+.inc-entry-bursary{font-size:10px;padding:2px 7px;border-radius:10px;background:var(--gold-light);color:var(--gold-dark);font-weight:600;margin-left:6px}
+.inc-entry-right{display:flex;align-items:center;gap:10px}
+.inc-entry-amt{font-weight:600;color:#0F6E56}
+.inc-del{background:none;border:none;cursor:pointer;color:var(--text3);font-size:16px;padding:0;line-height:1;font-family:inherit}
+.totals-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.total-box{background:var(--bg2);border-radius:var(--r);padding:12px}
+.total-lbl{font-size:10px;color:var(--text2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.total-val{font-size:22px;font-weight:600}
 </style>
 </head>
 <body>
 <div class="motto">above average</div>
 <div class="sbar"><div class="sdot" id="sdot"></div><span id="slbl">–</span></div>
-
+ 
 <nav class="nav">
   <button class="nb on" data-view="day"><span class="ic">☀️</span>Day</button>
   <button class="nb" data-view="week"><span class="ic">📅</span>Week</button>
@@ -147,7 +167,7 @@ textarea::placeholder{color:var(--text3)}
   <button class="nb" data-view="goals"><span class="ic">🌟</span>22 before 22</button>
   <button class="nb" data-view="money"><span class="ic">💶</span>Money</button>
 </nav>
-
+ 
 <!-- DAY -->
 <div id="view-day" class="view on">
   <div class="drow">
@@ -198,7 +218,7 @@ textarea::placeholder{color:var(--text3)}
     <div class="smsg" id="smsg">Saved ✓</div>
   </div>
 </div>
-
+ 
 <!-- WEEK -->
 <div id="view-week" class="view">
   <div style="font-size:16px;font-weight:600;margin-bottom:14px" id="wlbl"></div>
@@ -213,7 +233,7 @@ textarea::placeholder{color:var(--text3)}
     <div id="wrefs" style="font-size:13px;color:var(--text2);line-height:1.9"></div>
   </div>
 </div>
-
+ 
 <!-- MONTH -->
 <div id="view-month" class="view">
   <div class="mnav">
@@ -229,7 +249,7 @@ textarea::placeholder{color:var(--text3)}
     <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:4px"></span>Reminder</span>
   </div>
 </div>
-
+ 
 <!-- GOALS -->
 <div id="view-goals" class="view">
   <div class="card" style="margin-bottom:12px">
@@ -242,19 +262,44 @@ textarea::placeholder{color:var(--text3)}
     <div id="blist"></div>
   </div>
 </div>
-
+ 
 <!-- MONEY -->
 <div id="view-money" class="view">
-  <div class="stitle" id="mmonth" style="margin-bottom:4px"></div>
-  <div style="font-size:12px;color:var(--text3);margin-bottom:14px">Simple snapshot — no pressure, just clarity</div>
-  <div style="display:flex;gap:10px;margin-bottom:12px">
-    <div class="mbox"><div class="mlbl">Came in this month</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:16px;color:var(--text3)">€</span><input class="minp" type="number" id="minc" placeholder="0" style="color:#0F6E56"></div></div>
-    <div class="mbox"><div class="mlbl">Put aside to invest</div><div style="display:flex;align-items:center;gap:4px"><span style="font-size:16px;color:var(--text3)">€</span><input class="minp" type="number" id="minv" placeholder="0" style="color:var(--purple)"></div></div>
+  <div class="stitle" id="mmonth" style="margin-bottom:14px"></div>
+ 
+  <div class="totals-grid">
+    <div class="total-box">
+      <div class="total-lbl">Total earned</div>
+      <div class="total-val" id="m-total" style="color:#0F6E56">€0</div>
+    </div>
+    <div class="total-box">
+      <div class="total-lbl">Excl. bursary</div>
+      <div class="total-val" id="m-total-no-bursary" style="color:var(--purple)">€0</div>
+    </div>
   </div>
-  <div id="msum" style="display:none;margin-bottom:12px;padding:10px 14px;background:var(--bg2);border-radius:var(--r);font-size:13px;color:var(--text2);line-height:1.7"></div>
-  <div class="card"><div class="stitle">How do you feel about money this month?</div><textarea id="mnote" placeholder="One line is enough."></textarea></div>
+ 
+  <div class="card" style="margin-bottom:12px">
+    <div class="stitle" style="margin-bottom:10px">Add income</div>
+    <div class="inc-form">
+      <input id="m-desc" placeholder="Description (e.g. Babysitting, Dad)">
+      <div class="inc-form-row">
+        <input id="m-amount" type="number" placeholder="Amount (€)">
+        <input id="m-date" type="date">
+      </div>
+      <label class="bursary-toggle">
+        <input type="checkbox" id="m-is-bursary" style="width:16px;height:16px;accent-color:var(--gold)">
+        This is my bursary
+      </label>
+      <button class="inc-add-btn" id="m-add-btn">+ Add entry</button>
+    </div>
+  </div>
+ 
+  <div class="card">
+    <div class="stitle" style="margin-bottom:10px">Income log</div>
+    <div id="m-entries"><span style="font-size:13px;color:var(--text3)">No entries yet.</span></div>
+  </div>
 </div>
-
+ 
 <script>
 // ─────────────────────────────────────────────
 // CONFIG
@@ -262,14 +307,14 @@ textarea::placeholder{color:var(--text3)}
 var SB  = 'https://lngukpdjqxpugicvnlbs.supabase.co';
 var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxuZ3VrcGRqcXhwdWdpY3ZubGJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2MTU1MTIsImV4cCI6MjA5NjE5MTUxMn0.f2RjkGeMNhtoYq6oKWysy7PDMBDbhTeMUpOsd5Mbu7E';
 var HDR = { 'Content-Type':'application/json', apikey:KEY, Authorization:'Bearer '+KEY };
-
+ 
 var MO = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 var DA = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 var SH = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-
+ 
 var TOPT = ['Backtest a setup','Chart other futures','Rico — why location matters','Rico — how I backtest','Jaden — correlation & levels','Jaden — ORB / VWAP','Wall St — backtesting','Wall St — psych levels & fibs','Mini bootcamp — trade mechanics','Sci — ICC strategy','Sci — psychology','Review saved reels','Check screenshots','Other'];
 var LOPT = ['Portuguese — YouTube immersion','Portuguese — listen & repeat','Piano — 20 min','Read — 20 pages','Chess with brother','Journal (free write)','Gym','Capsule wardrobe research','Hair care','Skincare & hygiene','Plan something fun in Paris','Call someone you love','Explore music / concerts','Other'];
-
+ 
 // ─────────────────────────────────────────────
 // STATE
 // ─────────────────────────────────────────────
@@ -280,7 +325,7 @@ var DC    = {};   // day cache
 var GC    = null; // goals cache
 var MC    = {};   // money cache
 var MT    = null; // money debounce timer
-
+ 
 // ─────────────────────────────────────────────
 // UTILS
 // ─────────────────────────────────────────────
@@ -290,7 +335,7 @@ function curK(){ return ld(cur); }
 function todK(){ return ld(today); }
 function monK(){ var n=new Date(); return n.getFullYear()+'-'+p2(n.getMonth()+1); }
 function esc(s){ return s?(''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''; }
-
+ 
 // ─────────────────────────────────────────────
 // SYNC DOT
 // ─────────────────────────────────────────────
@@ -299,7 +344,7 @@ function ss(st){
   d.className='sdot '+(st==='busy'?'busy':st==='err'?'err':'ok');
   l.textContent=st==='busy'?'saving…':st==='err'?'offline':'saved';
 }
-
+ 
 // ─────────────────────────────────────────────
 // DB HELPERS
 // ─────────────────────────────────────────────
@@ -308,7 +353,7 @@ function dbGet(table, qs){
     .then(function(r){ return r.ok ? r.json() : null; })
     .catch(function(){ return null; });
 }
-
+ 
 function dbUpsert(table, obj){
   ss('busy');
   var h = Object.assign({}, HDR, { Prefer:'resolution=merge-duplicates' });
@@ -316,7 +361,7 @@ function dbUpsert(table, obj){
     .then(function(r){ ss(r.ok?'ok':'err'); return r.ok; })
     .catch(function(){ ss('err'); return false; });
 }
-
+ 
 // ─────────────────────────────────────────────
 // DAY DATA
 // ─────────────────────────────────────────────
@@ -324,7 +369,7 @@ function emptyDay(k){
   return { date:k, trade_intent:'', life_intent:'', charts_done:false, psych_done:false,
            trade_done:false, life_done:false, traded_today:false, note:'', reminders:[] };
 }
-
+ 
 function fetchDay(k){
   return dbGet('aa_days','date=eq.'+k).then(function(rows){
     if(rows && rows.length){
@@ -337,12 +382,12 @@ function fetchDay(k){
     return DC[k];
   });
 }
-
+ 
 function upsDay(k, d){
   DC[k] = d;
   return dbUpsert('aa_days', d);
 }
-
+ 
 // ─────────────────────────────────────────────
 // GOALS DATA
 // ─────────────────────────────────────────────
@@ -378,7 +423,7 @@ function defGoals(){
     ]
   };
 }
-
+ 
 function fetchGoals(){
   if(GC) return Promise.resolve(GC);
   return dbGet('aa_goals','id=neq.null').then(function(rows){
@@ -394,7 +439,7 @@ function fetchGoals(){
     return GC;
   });
 }
-
+ 
 // ─────────────────────────────────────────────
 // NAV
 // ─────────────────────────────────────────────
@@ -411,7 +456,7 @@ document.querySelectorAll('.nb').forEach(function(btn){
     if(v==='money') renderMoney();
   });
 });
-
+ 
 function goToDay(k){
   var pts=k.split('-');
   cur=new Date(+pts[0],+pts[1]-1,+pts[2]);
@@ -421,14 +466,14 @@ function goToDay(k){
   document.querySelector('.nb[data-view="day"]').classList.add('on');
   renderDay();
 }
-
+ 
 // ─────────────────────────────────────────────
 // DAY VIEW
 // ─────────────────────────────────────────────
 document.getElementById('dp').addEventListener('click', function(){ cur.setDate(cur.getDate()-1); renderDay(); });
 document.getElementById('dn').addEventListener('click', function(){ cur.setDate(cur.getDate()+1); renderDay(); });
 document.getElementById('ctr').addEventListener('change', function(){ document.getElementById('jp').style.display=this.checked?'block':'none'; });
-
+ 
 document.getElementById('savebtn').addEventListener('click', function(){
   var k=curK();
   fetchDay(k).then(function(d){
@@ -441,12 +486,12 @@ document.getElementById('savebtn').addEventListener('click', function(){
     if(ok){ var m=document.getElementById('smsg'); m.style.display='block'; setTimeout(function(){ m.style.display='none'; },2500); }
   });
 });
-
+ 
 document.getElementById('tsbtn').addEventListener('click', function(){ saveOther('t'); });
 document.getElementById('tinp').addEventListener('keydown', function(e){ if(e.key==='Enter') saveOther('t'); });
 document.getElementById('lsbtn').addEventListener('click', function(){ saveOther('l'); });
 document.getElementById('linp').addEventListener('keydown', function(e){ if(e.key==='Enter') saveOther('l'); });
-
+ 
 function saveOther(type){
   var val=(document.getElementById(type==='t'?'tinp':'linp').value||'').trim();
   if(!val) return;
@@ -457,13 +502,13 @@ function saveOther(type){
     return upsDay(k,d);
   }).then(function(){ renderDay(); });
 }
-
+ 
 function renderDay(){
   var isT=(curK()===todK());
   document.getElementById('dlbl').textContent=isT
     ?'Today, '+cur.getDate()+' '+MO[cur.getMonth()]
     :DA[cur.getDay()]+' '+cur.getDate()+' '+MO[cur.getMonth()];
-
+ 
   fetchDay(curK()).then(function(d){
     drawRemArea(d);
     drawPills(d);
@@ -476,7 +521,7 @@ function renderDay(){
     document.getElementById('smsg').style.display='none';
   });
 }
-
+ 
 function drawRemArea(d){
   var rem=Array.isArray(d.reminders)?d.reminders:[];
   var area=document.getElementById('rarea');
@@ -507,13 +552,13 @@ function drawRemArea(d){
     });
   });
 }
-
+ 
 function drawPills(d){
   var tg=document.getElementById('tpills'), lg=document.getElementById('lpills');
   tg.innerHTML=''; lg.innerHTML='';
   var tIsO=d.trade_intent && d.trade_intent.indexOf('Other:')===0;
   var lIsO=d.life_intent  && d.life_intent.indexOf('Other:')===0;
-
+ 
   TOPT.forEach(function(o){
     var btn=document.createElement('button');
     var isSel=(o==='Other')?tIsO:(d.trade_intent===o);
@@ -531,7 +576,7 @@ function drawPills(d){
     });
     tg.appendChild(btn);
   });
-
+ 
   LOPT.forEach(function(o){
     var btn=document.createElement('button');
     var isSel=(o==='Other')?lIsO:(d.life_intent===o);
@@ -549,12 +594,12 @@ function drawPills(d){
     });
     lg.appendChild(btn);
   });
-
+ 
   document.getElementById('torow').className='orow'+(tIsO?' show':'');
   if(tIsO) document.getElementById('tinp').value=d.trade_intent.replace(/^Other:\s*/,'');
   document.getElementById('lorow').className='orow'+(lIsO?' show':'');
   if(lIsO) document.getElementById('linp').value=d.life_intent.replace(/^Other:\s*/,'');
-
+ 
   var td=document.getElementById('tdisp');
   td.textContent=d.trade_intent||'Pick one for today';
   td.className='sdisp'+(d.trade_intent?' set':'');
@@ -562,7 +607,7 @@ function drawPills(d){
   ld2.textContent=d.life_intent||'Pick one for today';
   ld2.className='sdisp'+(d.life_intent?' set':'');
 }
-
+ 
 function drawChecklist(d){
   var items=[{k:'charts_done',l:'Check charts & plan trades'},{k:'psych_done',l:'Psychology check — am I in the right headspace?'}];
   var el=document.getElementById('clist'); el.innerHTML='';
@@ -577,7 +622,7 @@ function drawChecklist(d){
     row.appendChild(cb); row.appendChild(lbl); el.appendChild(row);
   });
 }
-
+ 
 // ─────────────────────────────────────────────
 // WEEK VIEW
 // ─────────────────────────────────────────────
@@ -615,13 +660,13 @@ function renderWeek(){
     document.getElementById('wrefs').innerHTML=notes||'<span style="color:var(--text3)">No reflections this week yet.</span>';
   });
 }
-
+ 
 // ─────────────────────────────────────────────
 // MONTH VIEW
 // ─────────────────────────────────────────────
 document.getElementById('mprev').addEventListener('click',function(){ monV=new Date(monV.getFullYear(),monV.getMonth()-1,1); renderMonth(); });
 document.getElementById('mnext').addEventListener('click',function(){ monV=new Date(monV.getFullYear(),monV.getMonth()+1,1); renderMonth(); });
-
+ 
 function renderMonth(){
   document.getElementById('mtitle').textContent=MO[monV.getMonth()]+' '+monV.getFullYear();
   document.getElementById('mhdr').innerHTML=SH.map(function(s){ return '<div class="mhdr">'+s+'</div>'; }).join('');
@@ -651,7 +696,7 @@ function renderMonth(){
     }
   });
 }
-
+ 
 // ─────────────────────────────────────────────
 // GOALS VIEW
 // ─────────────────────────────────────────────
@@ -699,49 +744,105 @@ function renderGoals(){
     });
   });
 }
-
+ 
 // ─────────────────────────────────────────────
 // MONEY VIEW
 // ─────────────────────────────────────────────
+var incomeEntries = [];
+ 
 function renderMoney(){
   var now=new Date();
   document.getElementById('mmonth').textContent=MO[now.getMonth()]+' '+now.getFullYear();
-  var k=monK();
-  dbGet('aa_money','month=eq.'+k).then(function(rows){
-    var m=(rows&&rows.length)?rows[0]:{month:k,income:0,invest:0,note:''};
-    MC[k]=m;
-    document.getElementById('minc').value=m.income||'';
-    document.getElementById('minv').value=m.invest||'';
-    document.getElementById('mnote').value=m.note||'';
-    drawMoneySum();
+  // Set today's date as default
+  var todayStr=ld(now);
+  document.getElementById('m-date').value=todayStr;
+  loadIncomeEntries();
+}
+ 
+function loadIncomeEntries(){
+  dbGet('aa_income','order=date.desc').then(function(rows){
+    incomeEntries=rows||[];
+    drawIncomeEntries();
   });
 }
-
-function drawMoneySum(){
-  var inc=parseFloat(document.getElementById('minc').value)||0;
-  var inv=parseFloat(document.getElementById('minv').value)||0;
-  var el=document.getElementById('msum');
-  if(inc>0){
-    el.innerHTML='€'+inc.toLocaleString()+' came in. €'+inv.toLocaleString()+' going toward your future — €'+(inc-inv).toLocaleString()+' to live on.';
-    el.style.display='block';
-  } else { el.style.display='none'; }
+ 
+function drawIncomeEntries(){
+  var total=0, totalNoBursary=0;
+  incomeEntries.forEach(function(e){
+    total+=parseFloat(e.amount)||0;
+    if(!e.is_bursary) totalNoBursary+=parseFloat(e.amount)||0;
+  });
+  document.getElementById('m-total').textContent='€'+total.toLocaleString();
+  document.getElementById('m-total-no-bursary').textContent='€'+totalNoBursary.toLocaleString();
+ 
+  var el=document.getElementById('m-entries');
+  if(!incomeEntries.length){
+    el.innerHTML='<span style="font-size:13px;color:var(--text3)">No entries yet.</span>';
+    return;
+  }
+  el.innerHTML='';
+  incomeEntries.forEach(function(e){
+    var row=document.createElement('div'); row.className='inc-entry';
+    var dateParts=e.date.split('-');
+    var dateDisp=dateParts[2]+' '+MO[+dateParts[1]-1]+' '+dateParts[0];
+    row.innerHTML='<div class="inc-entry-left">'+
+      '<div class="inc-entry-desc">'+esc(e.description)+(e.is_bursary?'<span class="inc-entry-bursary">Bursary</span>':'')+'</div>'+
+      '<div class="inc-entry-meta">'+dateDisp+'</div>'+
+      '</div>'+
+      '<div class="inc-entry-right">'+
+      '<span class="inc-entry-amt">+€'+(parseFloat(e.amount)||0).toLocaleString()+'</span>'+
+      '<button class="inc-del" data-id="'+e.id+'">×</button>'+
+      '</div>';
+    el.appendChild(row);
+  });
+  el.querySelectorAll('.inc-del').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      deleteIncomeEntry(btn.dataset.id);
+    });
+  });
 }
-
-function saveMoney(){
-  var k=monK();
-  var m=MC[k]||{month:k,income:0,invest:0,note:''};
-  m.income=parseFloat(document.getElementById('minc').value)||0;
-  m.invest=parseFloat(document.getElementById('minv').value)||0;
-  m.note=document.getElementById('mnote').value;
-  MC[k]=m;
-  dbUpsert('aa_money',m);
-  drawMoneySum();
+ 
+function addIncomeEntry(){
+  var desc=(document.getElementById('m-desc').value||'').trim();
+  var amount=parseFloat(document.getElementById('m-amount').value)||0;
+  var date=document.getElementById('m-date').value;
+  var isBursary=document.getElementById('m-is-bursary').checked;
+  if(!desc||!amount||!date){ return; }
+  var entry={date:date, description:desc, amount:amount, is_bursary:isBursary};
+  ss('busy');
+  fetch(SB+'/rest/v1/aa_income',{
+    method:'POST',
+    headers:Object.assign({},HDR,{Prefer:'return=representation'}),
+    body:JSON.stringify(entry)
+  }).then(function(r){ ss(r.ok?'ok':'err'); return r.ok?r.json():null; })
+  .then(function(rows){
+    if(rows&&rows.length){
+      incomeEntries.unshift(rows[0]);
+      incomeEntries.sort(function(a,b){ return b.date.localeCompare(a.date); });
+    }
+    document.getElementById('m-desc').value='';
+    document.getElementById('m-amount').value='';
+    document.getElementById('m-is-bursary').checked=false;
+    drawIncomeEntries();
+  }).catch(function(){ ss('err'); });
 }
-
-document.getElementById('minc').addEventListener('input',function(){ clearTimeout(MT); MT=setTimeout(saveMoney,1500); drawMoneySum(); });
-document.getElementById('minv').addEventListener('input',function(){ clearTimeout(MT); MT=setTimeout(saveMoney,1500); drawMoneySum(); });
-document.getElementById('mnote').addEventListener('input',function(){ clearTimeout(MT); MT=setTimeout(saveMoney,1500); });
-
+ 
+function deleteIncomeEntry(id){
+  ss('busy');
+  fetch(SB+'/rest/v1/aa_income?id=eq.'+id,{
+    method:'DELETE',
+    headers:HDR
+  }).then(function(r){
+    ss(r.ok?'ok':'err');
+    if(r.ok){
+      incomeEntries=incomeEntries.filter(function(e){ return e.id!==id; });
+      drawIncomeEntries();
+    }
+  }).catch(function(){ ss('err'); });
+}
+ 
+document.getElementById('m-add-btn').addEventListener('click', addIncomeEntry);
+ 
 // ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
